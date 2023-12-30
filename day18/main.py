@@ -3,7 +3,6 @@ from turtle import Turtle, Screen, colormode
 
 theo = Turtle()
 theo.shape("turtle")
-theo.pensize(2)
 # theo.color("violetred")
 
 # make a square
@@ -33,14 +32,16 @@ def change_color():
     r = random.randint(0, 255)
     g = random.randint(0, 255)
     b = random.randint(0, 255)
-    theo.color(r, g, b)
+    rand_color = (r, g, b)
+    return rand_color
 
 # interior angle of a polygon with n sides: (n - 2) * 180 / n
 # exterior angles: 360 / n
 # sum of angles: (n - 2) * 180. if a polygon has n sides, there are n-2 triangles inside.
 
+
 # def draw_shape(num_sides):
-#     change_color()
+#     theo.color(change_color())
 #     angle = 360 / num_sides
 #     for _ in range(num_sides):
 #         theo.forward(100)
@@ -52,13 +53,32 @@ def change_color():
 
 
 # random walk
-directions = [0, 90, 180, 360]
-theo.speed("fastest")
+# directions = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+# theo.pensize(3)
+# theo.speed("fastest")
+#
+# for _ in range(500):
+#     theo.color(change_color())
+#     theo.forward(15)
+#     theo.setheading(random.choice(directions))
 
-for _ in range(300):
-    change_color()
-    theo.forward(30)
-    theo.setheading(random.choice(directions))
+theo.pensize(2)
+theo.speed('fastest')
+# for _ in range(0, 361, 5):
+#     theo.setheading(_)
+#     theo.color(change_color())
+#     theo.circle(70)
+# or,
+
+
+def draw_spirograph(gap_size):
+    for _ in range(360 // gap_size):
+        theo.setheading(theo.heading() + gap_size)
+        theo.color(change_color())
+        theo.circle(150)
+
+
+draw_spirograph(4)
 
 screen = Screen()
 screen.exitonclick()
