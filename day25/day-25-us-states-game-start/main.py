@@ -22,10 +22,7 @@ answer_state = screen.textinput(title="Guess the State", prompt="Enter a state n
 
 while len(guessed) < len(states_list):
     if answer_state.lower() == 'exit':
-        states_to_learn = []
-        for state in states_list:
-            if state not in guessed:
-                states_to_learn.append(state)
+        states_to_learn = [state for state in states_list if state not in guessed]
 
         df = pandas.DataFrame(states_to_learn)
         df.to_csv("missed_states.csv")
